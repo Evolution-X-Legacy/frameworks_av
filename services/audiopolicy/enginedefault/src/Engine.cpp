@@ -521,13 +521,6 @@ audio_devices_t Engine::getDeviceForStrategyInt(routing_strategy strategy,
     case STRATEGY_REROUTING:
     case STRATEGY_MEDIA: {
         uint32_t device2 = AUDIO_DEVICE_NONE;
-
-        if (isInCall() && (device == AUDIO_DEVICE_NONE)) {
-            // when in call, get the device for Phone strategy
-            device = getDeviceForStrategy(STRATEGY_PHONE);
-            break;
-        }
-
         if (isInCall() && (strategy == STRATEGY_MEDIA)) {
             device = getDeviceForStrategyInt(
                     STRATEGY_PHONE, availableOutputDevices, availableInputDevices, outputs,
